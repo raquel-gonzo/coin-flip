@@ -4,7 +4,7 @@ function tossCoin() {
 }
 
 const fiveHeads = () => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         let headsCount = 0;
         let attempts = 0;
         while (headsCount < 5) {
@@ -15,6 +15,9 @@ const fiveHeads = () => {
                 headsCount++;
             } else {
                 headsCount = 0;
+            }
+            if (attempts > 100) {
+                reject(`Coin flips cannot exceed 100.`)
             }
         }
         resolve(`It took ${attempts} tries to flip five "heads"`);
